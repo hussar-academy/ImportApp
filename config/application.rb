@@ -8,10 +8,12 @@ Bundler.require(*Rails.groups)
 
 module ImportApp
   class Application < Rails::Application
+    # Use the responders controller from the responders gem
     config.active_record.raise_in_transactional_callbacks = true
     config.autoload_paths << Rails.root.join('lib')
 
     config.generators do |g|
+      g.scaffold_controller :responders_controller
       g.test_framework :rspec,
                        fixtures: true,
                        view_specs: false,
