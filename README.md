@@ -17,7 +17,7 @@ Not everything is a must, please send your work back whenever you feel you've do
   * List of available companies are already in the database.
   * `company` column contains name of the company, that operations should be assigned to.
   * There should be no changes to `companies` table.
-  * `categories` column contains list of categories separated by `;`.
+  * `kind` column contains list of categories separated by `;`.
   * Import should create missing categories on the fly.
   * Possible date formats are `MM/DD/YYYY`, `YYYY-MM-DD` and `DD-MM-YYYY`.
   * Example file can be downloaded [here](http://monterail-share.s3.amazonaws.com/ImporterAppExample.csv).
