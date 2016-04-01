@@ -1,0 +1,7 @@
+= render 'shared/flash_messages'
+
+h2 Upload CSV file
+
+= bootstrap_form_tag url: import_operations_path do |f|
+  = f.file_field :file
+  = f.submit

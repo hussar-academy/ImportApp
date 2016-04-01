@@ -1,0 +1,6 @@
+- flash.each do |type, content|
+  - if content.respond_to?('each')
+    - content.each do |item|
+      = render 'shared/alert', type: type, content: item
+  - else
+    = render 'shared/alert', type: type, content: content
