@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module ImportApp
   class Application < Rails::Application
     config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths << Rails.root.join('lib')
 
     config.generators do |g|
       g.test_framework :rspec,
