@@ -13,3 +13,10 @@
 /tmp
 
 config/database.yml
+
+.ruby-version
+.ruby-gemset
+
+public/uploads
+spec/fixtures/*
+
