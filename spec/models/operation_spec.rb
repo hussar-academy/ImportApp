@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Operation, type: :model do
-  let(:operation)
   it "is valid with valid attributes" do
     expect(Operation.new).to be_valid
   end
