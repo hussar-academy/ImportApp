@@ -61,6 +61,7 @@ GEM
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
     daemons (1.2.3)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     down (2.1.0)
@@ -72,6 +73,8 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     foreman (0.81.0)
       thor (~> 0.19.1)
     globalid (0.3.5)
@@ -175,6 +178,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     shrine (1.4.2)
       down (>= 2.0.1)
     simple_form (3.2.1)
@@ -216,7 +221,9 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.1.0)
+  database_cleaner
   factory_girl_rails
+  faker
   foreman
   jbuilder (~> 2.0)
   jquery-rails
@@ -229,6 +236,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   shrine
   simple_form
   spring
