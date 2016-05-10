@@ -1,44 +1,62 @@
 require 'csv'
 
 # CSV file importer class
-class FileImporter
+class CSVImporter
   attr_reader :companies, :categories, :non_parsed_rows, :rows
 
   def initialize(file)
-    @non_parsed_rows = 0
-    scan(file)
+    @file             = file
+    @non_parsed_rows  = 0
+    @kinds            = []
+    @companies        = []
+    @rows             = []
   end
 
-  def scanner(file)
-    kinds       = []
-    companies   = []
-    rows        = []
-
-    CSV.foreach(file, headers: true) do |row|
-      kinds << row['kind']
-      # Counting the non parsed rows due to absense of company field.
+  # Counting the errors and parsing in one move!
+  def scan
+    CSV.foreach(@file, headers: true) do |row|
+      @kinds << row['kind']
       if row['company'].nil?
         @non_parsed_rows += 1
       else
-        companies << row['company']
-        rows.push({
-          company: row['company'],
-          invoice_num: row['invoice_num'],
+        @companies << row['company']
+        @rows.push(
+          company:        row['company'],
+          invoice_num:    row['invoice_num'],
           operation_date: row['operation_date'],
-          amount: row['amount'],
-          reporter: row['reporter'],
-          notes: row['notes'],
-          kind: row['kind']
-        })
+          amount:         row['amount'],
+          reporter:       row['reporter'],
+          notes:          row['notes'],
+          kind:           row['kind']
+        )
       end
     end
-    @categories = kind_parser(kinds)
-    @companies  = company_parser(companies)
-    @rows       = rows_cleaner(rows)
+    rows_cleaner
   end
-  alias scan scanner
+
+  # Almost a different implmentation of CSVImporter#scan using less syntax,
+  # but with really really bad performance.
+  def self.parse(csv_file)
+    data = []
+    # Creating nil values instead of empty strings,
+    CSV::Converters[:blank_nil] = lambda do |field|
+      field && field.empty? ? nil : field
+    end
+    CSV.foreach(csv_file, headers: true,
+                          header_converters: :symbol,
+                          converters: [:all, :blank_nil]) do |row|
+      data << row.to_hash
+    end
+    data
+  end
 
   private
+
+  def rows_cleaner
+    @categories = kind_parser(@kinds)
+    @companies  = company_parser(@companies)
+    hash_cleaner(@rows)
+  end
 
   def kind_parser(data)
     data.join(' ').tr(';', ' ').gsub(/  /, ' ')
@@ -48,5 +66,9 @@ class FileImporter
   # Clean the spaces before company name if there any.
   def company_parser(data)
     data.map(&:lstrip)
+  end
+
+  def hash_cleaner(data)
+    data.map { |key| key[:company] = key[:company].lstrip }
   end
 end
