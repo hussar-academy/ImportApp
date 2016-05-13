@@ -19,4 +19,5 @@ config/database.yml
 
 public/uploads
 spec/fixtures/*
-
+.env
+*.rdb

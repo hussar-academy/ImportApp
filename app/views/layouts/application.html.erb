@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/"class="blue lighten-1 brand-logo"><img src="/assets/import.png" class="brand-logo" /></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/import" class="waves-effect blue lighten-1 waves-light btn">Import Data</a></li>
+        <li><a href="/" class="waves-effect green lighten-1 waves-light btn">Operations</a></li>
+      </ul>
+    </div>
+  </nav>
 
-<%= yield %>
-
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

@@ -1,0 +1,37 @@
+//= require material_icons
+@import "materialize/extras/nouislider";
+@import "materialize";
+.brand-logo {
+  margin-left: 4px;
+  margin-top: 4px;
+  width: 23%;
+}
+
+nav {
+  background-color: white;
+}
+
+.nav-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 72%;
+}
+.row {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 103%;
+}
+
+.searchy {
+  height: 47px;
+}
+#search {
+  margin-top: 14px;
+  height: 37px;
+  padding-right: 8%;
+}
+.row {
+  margin-left: auto;
+  margin-right: auto;
+}

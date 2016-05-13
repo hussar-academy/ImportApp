@@ -1,0 +1,13 @@
+<%= form_tag({controller: "import", action: "create"}, multipart: true, remote: true) do |f| %>
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>Your CSV File</span>
+      <%= file_field_tag :file, required: true, accept: ".csv" %>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+    <br />
+    <%= submit_tag 'Import', class: "btn waves-effect waves-light" %>
+  </div>
+<% end %>
