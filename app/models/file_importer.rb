@@ -13,6 +13,7 @@ class CSVImporter
   end
 
   # Counting the errors and parsing in one move!
+  # faster than the next method
   def scan
     CSV.foreach(@file, headers: true) do |row|
       @kinds << row['kind']
