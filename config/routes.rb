@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   get '/import', to: 'import#index'
   post '/import', to: 'import#create'
 
+  get '/fetch_operations', to: 'companies#fetch_operations'
+
   root 'companies#index', as: :root
 end

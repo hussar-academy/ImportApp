@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20160506235132) do
     t.string   "reporter"
     t.text     "notes"
     t.string   "status",                                  null: false
-    t.string   "kind",                                    null: false
+    t.string   "kind"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "company_id"

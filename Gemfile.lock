@@ -195,6 +195,8 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq_status (1.1.0)
+      sidekiq (>= 3.3, < 4.2)
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
@@ -255,6 +257,7 @@ DEPENDENCIES
   shoulda-matchers
   shrine
   sidekiq
+  sidekiq_status
   simple_form
   sinatra
   spring

@@ -8,7 +8,7 @@ class CreateOperations < ActiveRecord::Migration
       t.string :reporter
       t.text :notes
       t.string :status, null: false
-      t.string :kind, null: false
+      t.string :kind
 
       t.timestamps null: false
     end

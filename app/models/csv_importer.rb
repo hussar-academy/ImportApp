@@ -6,10 +6,10 @@ class CSVImporter
 
   def initialize(file)
     @file             = file
-    @non_parsed_rows  = 0
     @kinds            = []
     @companies        = []
     @rows             = []
+    @non_parsed_rows  = 0
   end
 
   # Counting the errors and parsing in one move!
@@ -17,7 +17,9 @@ class CSVImporter
   def scan
     CSV.foreach(@file, headers: true) do |row|
       @kinds << row['kind']
-      if row['company'].nil?
+
+      if row['invoice_num'].nil? || row['company'].nil? || row['invoice_date'].nil? ||row['amount'].nil? ||
+          row['status'].nil? || row['operation_date'].nil?
         @non_parsed_rows += 1
       else
         @companies << row['company']
@@ -25,14 +27,15 @@ class CSVImporter
           company:        row['company'],
           invoice_num:    row['invoice_num'],
           operation_date: row['operation_date'],
+          invoice_date:   row['invoice_date'],
           amount:         row['amount'],
           reporter:       row['reporter'],
           notes:          row['notes'],
-          kind:           row['kind']
+          status:         row['status'],
+          kind:           row['kind'],
         )
       end
     end
-    rows_cleaner
   end
 
   # Almost a different implmentation of CSVImporter#scan using less syntax,
@@ -49,27 +52,5 @@ class CSVImporter
       data << row.to_hash
     end
     data
-  end
-
-  private
-
-  def rows_cleaner
-    @categories = kind_parser(@kinds)
-    @companies  = company_parser(@companies)
-    hash_cleaner(@rows)
-  end
-
-  def kind_parser(data)
-    data.join(' ').tr(';', ' ').gsub(/  /, ' ')
-        .split(' ').map(&:capitalize).uniq!
-  end
-
-  # Clean the spaces before company name if there any.
-  def company_parser(data)
-    data.map(&:lstrip)
-  end
-
-  def hash_cleaner(data)
-    data.map { |key| key[:company] = key[:company].lstrip }
   end
 end

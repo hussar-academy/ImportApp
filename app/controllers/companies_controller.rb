@@ -1,16 +1,16 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-  # GET /companies
-  # GET /companies.json
   def index
     @companies = Company.order('id asc').includes(:operations)
   end
 
-  # POST /companies
-  # POST /companies.json
-  def create
-
+  # Violating the RESTful prenciples like a boss.
+  def fetch_operations
+    @company = Company.find(params[:company])
+    @operations = @company.operations.includes(:categories)
+    respond_to do |format|
+      format.json { render json: @operations }
+    end
   end
 
   private

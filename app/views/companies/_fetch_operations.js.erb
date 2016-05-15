@@ -1,0 +1,28 @@
+<script>
+$('.js-load-more').on('click', function(){
+  var companyId = $(this).data('company');
+  var currentTable = $('#table-' + companyId);
+  var currentLI = $('#li-' + companyId);
+
+  $.ajax({
+    url: '/fetch_operations',
+    type: 'GET',
+    dataType: 'json',
+    data: {
+      company: companyId
+    },
+    success: function(data){ 
+      currentLI.removeClass('hide');
+      currentTable.removeClass('hide');
+      data.forEach(function(operation) {
+        currentTable.find('.tbody').append(
+            '<tr>' +
+            '<td>' + operation.invoice_num + '</td>' +
+            '<td>' + operation.invoice_date + '</td>' +
+            '</tr>'
+            );
+      });
+    }
+  });
+});
+</script>

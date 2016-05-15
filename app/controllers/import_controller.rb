@@ -4,14 +4,17 @@ class ImportController < ApplicationController
   end
 
   def create
-    @status = CsvProcessorJob.perform_later(file_path)
+    @status = CsvProcessorWorker.perform_async(file_path)
     respond_to do |format|
-      format.js { flash "#{@status}"}
+      format.js { render layout: false }
     end
-    head :ok
   end
 
   def file_path
     params[:file].path
+  end
+
+  def find_company(name)
+    @company ||= Company.find_by(name: name)
   end
 end

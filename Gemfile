@@ -31,6 +31,7 @@ gem 'dotenv-rails'
 # Kicking jobs to a queu.
 gem 'sidekiq'
 gem 'sinatra', :require => nil # For mounting the web interface
+gem 'sidekiq_status'
 
 group :development, :test do
   gem 'byebug'
