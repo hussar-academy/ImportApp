@@ -4,7 +4,7 @@ class ImportController < ApplicationController
   end
 
   def create
-    @status = CsvProcessorWorker.perform_async(file_path)
+    @job_id = CsvProcessorWorker.perform_async(file_path)
     respond_to do |format|
       format.js { render layout: false }
     end

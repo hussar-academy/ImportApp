@@ -7,6 +7,7 @@ class CsvProcessorWorker
 
   def perform(csv_file)
 
+    self.total = 100
     state = {
       total: 0,
       successful: 0,
@@ -14,14 +15,16 @@ class CsvProcessorWorker
     }
 
     @file = CSVImporter.new(csv_file)
+    at 0
     @file.scan
 
+    at 30
     @file.rows.map do |row|
 
       categories = row[:kind]&.split(';')&.map do |category_name|
         categories ||= Category.find_or_create_by(name: category_name)
       end
-
+    at 50
       @company = find_company(row[:company])
 
       begin
@@ -35,8 +38,10 @@ class CsvProcessorWorker
           notes: row[:notes],
           status: row[:status],
         )
+        at 85
         @operation.categories << categories if !categories.nil?
         state[:successful] += 1
+        at 100
       rescue ActiveRecord::RecordInvalid
         state[:failed] += 1
       ensure

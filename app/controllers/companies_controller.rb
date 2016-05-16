@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-
   def index
     @companies = Company.order('id asc').includes(:operations)
   end
