@@ -1,0 +1,27 @@
+<h4 class="light col s12">Operations</h4>
+<ul class="collection with-header">
+  <% @companies.each do |company| %>
+    <%= link_to 'Show Operations', '#',
+      class: "js-load-more show_operations right waves-light btn", remote: true, "data-company" => company.id %>
+    <li class="collection-header"><h5><%= company.name%></h5>
+    </li>
+    <li class="collection-item hide" id="li-<%= company.id %>">
+      <table class="operations highlight hide" id="table-<%= company.id %>">
+        <thead>
+          <tr>
+            <th data-field="id">Invoice Number</th>
+            <th data-field="price">Amount</th>
+            <th data-field="name">Reporter</th>
+            <th data-field="name">Status</th>
+            <th data-field="name">Categories</th>
+            <th data-field="name">Invoice Date</th>
+            <th data-field="name">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+      </table>
+    </li>
+  <% end %>
+</ul>
+<%= render 'fetch_operations.js.erb' %>
