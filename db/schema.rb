@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527065906) do
+ActiveRecord::Schema.define(version: 20160623181728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20150527065906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "category_operations", force: :cascade do |t|
+    t.integer  "category_id",  null: false
+    t.integer  "operation_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "category_operations", ["category_id", "operation_id"], name: "index_category_operations_on_category_id_and_operation_id", unique: true, using: :btree
+  add_index "category_operations", ["category_id"], name: "index_category_operations_on_category_id", using: :btree
+  add_index "category_operations", ["operation_id"], name: "index_category_operations_on_operation_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",       null: false
@@ -44,4 +55,6 @@ ActiveRecord::Schema.define(version: 20150527065906) do
 
   add_index "operations", ["company_id"], name: "index_operations_on_company_id", using: :btree
 
+  add_foreign_key "category_operations", "categories"
+  add_foreign_key "category_operations", "operations"
 end
