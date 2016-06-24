@@ -5,6 +5,5 @@ FactoryGirl.define do
     operation_date Date.today
     sequence(:amount) { |n| n } 
     sequence(:status) { |n| "status #{n}" } 
-    sequence(:kind) { |n| "kind #{n}" } 
   end
 end

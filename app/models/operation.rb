@@ -5,5 +5,5 @@ class Operation < ActiveRecord::Base
 
   validates :invoice_num, presence: true, uniqueness: true
   validates :amount, presence: true,  numericality: { greater_than: 0 }
-  validates :invoice_date, :operation_date, :kind, :status, presence: true
+  validates :invoice_date, :operation_date, :status, presence: true
 end

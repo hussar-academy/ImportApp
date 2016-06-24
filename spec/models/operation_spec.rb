@@ -15,6 +15,5 @@ RSpec.describe Operation, type: :model do
 
   it { is_expected.to validate_presence_of :invoice_date }
   it { is_expected.to validate_presence_of :operation_date }
-  it { is_expected.to validate_presence_of :kind }
   it { is_expected.to validate_presence_of :status }
 end
