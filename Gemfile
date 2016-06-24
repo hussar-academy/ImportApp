@@ -49,3 +49,10 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
 end
 
+gem 'slim-rails'
+gem 'angular-rails-templates'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+  gem 'rails-assets-angular-ui-router'
+end
