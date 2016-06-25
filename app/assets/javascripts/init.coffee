@@ -1,4 +1,4 @@
-angular.module('ImportApp', ['templates', 'ui.router', 'ngFileUpload'])
+angular.module('ImportApp', ['templates', 'ui.router', 'ngFileUpload', 'ngTable'])
   .config ($provide, $httpProvider) ->
     # CSFR token
     $httpProvider.defaults.headers.common['X-CSRF-Token'] =

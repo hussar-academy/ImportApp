@@ -56,4 +56,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-ng-file-upload'
+  gem 'rails-assets-ng-table'
 end
