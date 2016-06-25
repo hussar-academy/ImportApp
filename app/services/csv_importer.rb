@@ -23,10 +23,8 @@ class CsvImporter < BaseService
   attr_accessor :file
 
   def process_file
-    ActiveRecord::Base.transaction do
-      CSV.foreach(file.path, CSV_PARSER_OPTIONS) do |row|
-        process_row row.to_hash
-      end
+    CSV.foreach(file.path, CSV_PARSER_OPTIONS) do |row|
+      process_row row.to_hash
     end
   end
 

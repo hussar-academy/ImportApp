@@ -1,17 +1,19 @@
 form name="form"
   .button name="file" ng-model="file" ngf-accept="'.csv'" ngf-max-size="20MB" ngf-pattern="'.csv'"  ngf-select="importCsv()"  Import CSV
-  
+
 div
   div class="input-group"
     input id="searchText" ng-model="searchText" placeholder="Search"
 
-table ng-table="tableParams"
-  tr ng-repeat="operation in $data"
-    td data-title="'Invoice number'" sortable="'invoice_num'" {{operation.invoice_num}}
-    td data-title="'Invoice date'" sortable="'invoice_date'" {{operation.invoice_date | date : 'yyyy-MM-dd'}}
-    td data-title="'Operation date'" sortable="'operation_date'" {{operation.operation_date | date : 'yyyy-MM-dd'}}
-    td data-title="'Amount'" sortable="'amount'" {{operation.amount}}
-    td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
-    td data-title="'notes'" sortable="'notes'" {{operation.notes}}
-    td data-title="'status'" sortable="'status'" {{operation.status}}
-    td data-title="'company_id'" sortable="'company_id'" {{operation.company_id}}
+div ng-repeat="company in companies"
+  | {{company.name}} Number of the operations: {{company.operations_count}} Average amount of operations: {{company.average_amount_of_operations}} Highest operation from the current month: {{company.highest_operation_from_the_current_month}} Number of operations with status accepted: {{company.accepted_operations_count}}
+  table ng-table="company.tableParams"
+    tr ng-repeat="operation in $data"
+      td data-title="'Invoice number'" sortable="'invoice_num'" {{operation.invoice_num}}
+      td data-title="'Invoice date'" sortable="'invoice_date'" {{operation.invoice_date | date : 'yyyy-MM-dd'}}
+      td data-title="'Operation date'" sortable="'operation_date'" {{operation.operation_date | date : 'yyyy-MM-dd'}}
+      td data-title="'Amount'" sortable="'amount'" {{operation.amount}}
+      td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
+      td data-title="'Notes'" sortable="'notes'" {{operation.notes}}
+      td data-title="'Status'" sortable="'status'" {{operation.status}}
+      td data-title="'Categories'" sortable="'categories'" {{operation.categories}}

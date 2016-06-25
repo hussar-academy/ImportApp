@@ -1,11 +1,11 @@
 class OperationsController < ApplicationController
   def index
-    render json: Operation.all
+    render json: Company.includes(:operations).where('operations_count > ?', 0)
   end
 
   def create
     CsvImporter.call(operations_params[:file])
-    render json: {}, status: 200
+    render json: Company.includes(:operations).where('operations_count > ?', 0)
   end
 
   private
