@@ -1,19 +1,39 @@
-form name="form"
-  .button name="file" ng-model="file" ngf-accept="'.csv'" ngf-max-size="20MB" ngf-pattern="'.csv'"  ngf-select="importCsv()"  Import CSV
+div.top-default.bottom-default.col-md-offset-1.col-md-10
+  form.form-inline name="form"
+    .input-group
+      .form-group
+        .button.btn.btn-primary.form-control name="file" ng-model="file" ngf-accept="'.csv'" ngf-max-size="20MB" ngf-pattern="'.csv'"  ngf-select="importCsv()"  Import CSV
+      .form-group
+        input.form-control id="searchText" ng-model="searchText" placeholder="Search"
 
-div
-  div class="input-group"
-    input id="searchText" ng-model="searchText" placeholder="Search"
-
-div ng-repeat="company in companies"
-  | {{company.name}} Number of the operations: {{company.operations_count}} Average amount of operations: {{company.average_amount_of_operations}} Highest operation from the current month: {{company.highest_operation_from_the_current_month}} Number of operations with status accepted: {{company.accepted_operations_count}}
-  table ng-table="company.tableParams"
-    tr ng-repeat="operation in $data"
-      td data-title="'Invoice number'" sortable="'invoice_num'" {{operation.invoice_num}}
-      td data-title="'Invoice date'" sortable="'invoice_date'" {{operation.invoice_date | date : 'yyyy-MM-dd'}}
-      td data-title="'Operation date'" sortable="'operation_date'" {{operation.operation_date | date : 'yyyy-MM-dd'}}
-      td data-title="'Amount'" sortable="'amount'" {{operation.amount}}
-      td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
-      td data-title="'Notes'" sortable="'notes'" {{operation.notes}}
-      td data-title="'Status'" sortable="'status'" {{operation.status}}
-      td data-title="'Categories'" sortable="'categories'" {{operation.categories}}
+  div ng-repeat="company in companies"
+    h2
+      | {{company.name}}
+    .row
+      .col-md-6
+        .col-md-6.data-header Number of the operations
+        .col-md-2.data-text
+          | {{company.operations_count}}
+      .col-md-6
+        .col-md-6.data-header Average amount of operations
+        .col-md-2.data-text
+          | {{company.average_amount_of_operations}}
+    .row
+      .col-md-6
+        .col-md-6.data-header Highest operation from the current month
+        .col-md-2.data-text
+          | {{company.highest_operation_from_the_current_month}}
+      .col-md-6
+        .col-md-6.data-header Number of operations with status accepted
+        .col-md-2.data-text
+          | {{company.accepted_operations_count}}
+    table.table ng-table="company.tableParams"
+      tr ng-repeat="operation in $data"
+        td data-title="'Invoice number'" sortable="'invoice_num'" {{operation.invoice_num}}
+        td data-title="'Invoice date'" sortable="'invoice_date'" {{operation.invoice_date | date : 'yyyy-MM-dd'}}
+        td data-title="'Operation date'" sortable="'operation_date'" {{operation.operation_date | date : 'yyyy-MM-dd'}}
+        td data-title="'Amount'" sortable="'amount'" {{operation.amount}}
+        td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
+        td data-title="'Notes'" sortable="'notes'" {{operation.notes}}
+        td data-title="'Status'" sortable="'status'" {{operation.status}}
+        td data-title="'Categories'" sortable="'categories'" {{operation.categories}}

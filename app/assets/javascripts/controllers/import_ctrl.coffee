@@ -2,6 +2,10 @@ angular.module 'ImportApp'
   .controller 'ImportCtrl', ($scope, $interval, $timeout, $uibModalInstance, Upload, data)->
     $scope.interval = null
     $scope.progress = 0
+    $scope.companies = null
+    $scope.fails = null
+    $scope.successes = null
+    
     Upload.upload({
       url: "/operations",
       data: data
@@ -24,4 +28,3 @@ angular.module 'ImportApp'
         $uibModalInstance.close($scope.companies)
       else
         $uibModalInstance.dismiss('cancel')
-        
