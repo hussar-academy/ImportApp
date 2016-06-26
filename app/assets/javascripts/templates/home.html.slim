@@ -36,5 +36,5 @@ div.top-default.bottom-default.col-md-offset-1.col-md-10
         td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
         td data-title="'Notes'" sortable="'notes'" {{operation.notes}}
         td data-title="'Status'" sortable="'status'" {{operation.status}}
-        td data-title="'Categories'" sortable="'categories'" {{operation.categories}}
+        td data-title="'Categories'" sortable="'categories'" {{categoriesToString(operation.categories, ', ')}}
     button.btn.btn-primary.pull-right csv-header="headers" csv-column-order='headers' type="button" ng-csv="dataToCsv(company.tableParams.data)" filename="{{company.name + '.csv'}}" Export CSV

@@ -15,15 +15,15 @@ describe OperationsController do
     end
 
     it 'includes accepted_operations_count' do
-      expect(@company['accepted_operations_count']).to eq 0
+      expect(@company['accepted_operations_count']).to eq '0'
     end
 
     it 'includes average_amount_of_operations' do
-      expect(@company['average_amount_of_operations']).to eq '16916.6'
+      expect(@company['average_amount_of_operations'].to_f).to eq 16916.6
     end
 
     it 'includes highest_operation_from_the_current_month' do
-      expect(@company['highest_operation_from_the_current_month']).to eq '16916.6'
+      expect(@company['highest_operation_from_the_current_month']).to eq nil
     end
 
     it 'includes operations' do

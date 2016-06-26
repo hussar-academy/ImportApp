@@ -57,9 +57,8 @@ angular.module 'ImportApp'
       searchRegExp.test(operation.reporter) || searchRegExp.test(operation.categories)
 
     $scope.dataToCsv = (data) ->
-      console.log data
       for row in data
-        row.kind = row.categories.replace(', ', ';')
+        row.kind = $scope.categoriesToString(row.categories, ';')
       data
 
     $scope.headers = [
@@ -73,3 +72,8 @@ angular.module 'ImportApp'
       'status',
       'kind'
     ]
+
+    $scope.categoriesToString = (categories, separator) ->
+      array = categories.map (item) ->
+        item.name
+      array.join(separator)
