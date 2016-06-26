@@ -1,5 +1,5 @@
 angular.module 'ImportApp'
-  .controller 'HomeCtrl', ($http, $scope, $filter, Operation, Upload, NgTableParams)->
+  .controller 'HomeCtrl', ($http, $scope, $filter, $uibModal, Operation, Upload, NgTableParams)->
 
     $scope.companies = []
 
@@ -8,23 +8,20 @@ angular.module 'ImportApp'
       refreshOperationsList()
 
     $scope.importCsv = () ->
-      if $scope.form.file.$valid and $scope.file
-        $scope.upload $scope.file
-
-    $scope.upload = (file) ->
-      Upload.upload(
-        url: 'operations'
-        data:
-          file: file).then (resp) ->
-        console.log resp
-        $scope.companies = resp.data
+      modalInstance = $uibModal.open(
+        animation: true
+        size: 'lg'
+        controller: 'ImportCtrl'
+        templateUrl: 'import.html'
+        resolve:
+          data: ->
+            file: $scope.file)
+      modalInstance.result.then ((response) ->
+        $scope.companies = response
+        $scope.file = null
         refreshOperationsList()
-        (resp) ->
-          console.log 'Error status: ' + resp.status
-        (evt) ->
-          progressPercentage = parseInt(100.0 * evt.loaded / evt.total)
-          console.log 'progress: ' + progressPercentage + '% ' + evt.config.data.file.name
-      
+        ), ->
+          return   
     
     refreshOperationsList = () ->  
       for company in $scope.companies

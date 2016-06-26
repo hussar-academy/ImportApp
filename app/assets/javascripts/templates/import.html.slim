@@ -1,0 +1,12 @@
+div style="padding: 50px 20px"
+  .row.v-align-children
+    .col-md-4
+      div progress-wheel="progress"
+    .col-md-5.col-md-offset-1 ng-show="fails != null"
+      .row.h3
+        | {{successes + fails}} rows was processed
+      .row.h3.text-success
+        | {{successes}} rows was successfully imported
+      .row.h3.text-danger
+        | {{fails}}  rows failed during importing
+      button class="btn btn-primary" type="button" ng-click="ok()" OK

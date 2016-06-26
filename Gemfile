@@ -50,12 +50,16 @@ group :test do
 end
 
 gem 'slim-rails'
-gem 'angular-rails-templates'
 gem 'active_model_serializers'
+gem 'sprockets', '~> 2.12.4'
+gem 'angular-rails-templates'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-ng-file-upload'
   gem 'rails-assets-ng-table'
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-angular-ui-bootstrap-bower'
+  gem 'rails-assets-progressbar.js', '~> 0.9.0'
 end

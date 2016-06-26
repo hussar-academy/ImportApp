@@ -3,7 +3,6 @@ require 'csv'
 class CsvImporter < BaseService
 
   CSV_PARSER_OPTIONS = {
-    skip_blanks: true,
     headers: true
   }.freeze
 
@@ -16,6 +15,8 @@ class CsvImporter < BaseService
 
   def initialize(file)
     self.file = file
+    @successes = 0
+    @fails = 0
   end
 
   private
@@ -26,16 +27,26 @@ class CsvImporter < BaseService
     CSV.foreach(file.path, CSV_PARSER_OPTIONS) do |row|
       process_row row.to_hash
     end
+    { successes: @successes, fails: @fails }
   end
 
   def process_row(row)
     company = Company.find_by(name: row['company'])
-    return if company.nil?
-    categories = kinds_to_categories row['kind'].split(';')
+    if company.nil?
+      @fails += 1
+      return
+    end
+    operation = create_operation(row, company)
+    operation.persisted? ? @successes += 1 : @fails += 1
+  end
+
+  def create_operation(row, company)
+    categories = kinds_to_categories row['kind'].try(:split, ';')
     company.operations.create row.slice(*HEADERS).merge(categories: categories)
   end
 
   def kinds_to_categories(kinds)
+    return [] if kinds.nil?
     kinds.map do |kind|
       Category.find_or_create_by(name: kind)
     end

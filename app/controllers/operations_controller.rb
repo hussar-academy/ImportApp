@@ -4,8 +4,12 @@ class OperationsController < ApplicationController
   end
 
   def create
-    CsvImporter.call(operations_params[:file])
-    render json: Company.includes(:operations).where('operations_count > ?', 0)
+    response = CsvImporter.call(operations_params[:file])
+    companies = Company.includes(:operations).where('operations_count > ?', 0)
+    serializered_companies = ActiveModel::Serializer::CollectionSerializer.new(
+      companies,each_serializer: CompanySerializer)
+    #response.merge! companies: Company.includes(:operations).where('operations_count > ?', 0)
+    render json: response.merge(companies: serializered_companies.as_json)
   end
 
   private
