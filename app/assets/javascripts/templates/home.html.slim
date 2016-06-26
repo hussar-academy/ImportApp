@@ -13,26 +13,26 @@ div.top-default.bottom-default.col-md-offset-1.col-md-10
       .col-md-6
         .col-md-6.data-header Number of the operations
         .col-md-2.data-text
-          | {{company.operations_count}}
+          | {{company.operations_count | number}}
       .col-md-6
         .col-md-6.data-header Average amount of operations
         .col-md-2.data-text
-          | {{company.average_amount_of_operations}}
+          | {{company.average_amount_of_operations | number}}
     .row
       .col-md-6
         .col-md-6.data-header Highest operation from the current month
         .col-md-2.data-text
-          | {{company.highest_operation_from_the_current_month}}
+          | {{company.highest_operation_from_the_current_month | number}}
       .col-md-6
         .col-md-6.data-header Number of operations with status accepted
         .col-md-2.data-text
-          | {{company.accepted_operations_count}}
+          | {{company.accepted_operations_count | number}}
     table.table ng-table="company.tableParams"
       tr ng-repeat="operation in $data"
         td data-title="'Invoice number'" sortable="'invoice_num'" {{operation.invoice_num}}
         td data-title="'Invoice date'" sortable="'invoice_date'" {{operation.invoice_date | date : 'yyyy-MM-dd'}}
         td data-title="'Operation date'" sortable="'operation_date'" {{operation.operation_date | date : 'yyyy-MM-dd'}}
-        td data-title="'Amount'" sortable="'amount'" {{operation.amount}}
+        td data-title="'Amount'" sortable="'amount'" {{operation.amount | number}}
         td data-title="'Reporter'" sortable="'reporter'" {{operation.reporter}}
         td data-title="'Notes'" sortable="'notes'" {{operation.notes}}
         td data-title="'Status'" sortable="'status'" {{operation.status}}

@@ -13,6 +13,8 @@ angular.module 'ImportApp'
         size: 'lg'
         controller: 'ImportCtrl'
         templateUrl: 'import.html'
+        backdrop  : 'static',
+        keyboard  : false
         resolve:
           data: ->
             file: $scope.file)
