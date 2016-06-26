@@ -1,5 +1,5 @@
 company,invoice_num,invoice_date,operation_date,amount,reporter,notes,status,kind
 BP Biznes,B3963,2014-10-19,2014-10-11,10862.48,Miss Zola Hyatt,"Assumenda nobis sint nihil consectetur praesentium.
 Unde molestiae repellat animi assumenda.",rejected,negligible;Other
-Big Company 1,B15428,07-12-2014,29.11.2014,16916.6,Elizabeth Emard,"Ut non dolorem quae ad est in. Consequatur dolor eveniet eos explicabo est eaque voluptatum.",rejected,client;negligible
-Big Company 1,B15428,07-12-2014,29.11.2014,16916.6,Elizabeth Emard,"Ut non dolorem quae ad est in. Consequatur dolor eveniet eos explicabo est eaque voluptatum.",rejected,client;negligible
+Big Company 1,B15428,07-12-2014,29/11/2014,16916.6,Elizabeth Emard,"Ut non dolorem quae ad est in. Consequatur dolor eveniet eos explicabo est eaque voluptatum.",rejected,client;negligible
+Big Company 1,B15428,07-12-2014,29/11/2014,16916.6,Elizabeth Emard,"Ut non dolorem quae ad est in. Consequatur dolor eveniet eos explicabo est eaque voluptatum.",rejected,client;negligible

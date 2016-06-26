@@ -53,6 +53,7 @@ gem 'slim-rails'
 gem 'active_model_serializers'
 gem 'sprockets', '~> 2.12.4'
 gem 'angular-rails-templates'
+gem 'activerecord-import'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'

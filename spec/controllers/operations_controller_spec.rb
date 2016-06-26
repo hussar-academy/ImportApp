@@ -19,11 +19,11 @@ describe OperationsController do
     end
 
     it 'includes average_amount_of_operations' do
-      expect(@company['average_amount_of_operations']).to eq '10862.48'
+      expect(@company['average_amount_of_operations']).to eq '16916.6'
     end
 
     it 'includes highest_operation_from_the_current_month' do
-      expect(@company['highest_operation_from_the_current_month']).to eq '10862.48'
+      expect(@company['highest_operation_from_the_current_month']).to eq '16916.6'
     end
 
     it 'includes operations' do
