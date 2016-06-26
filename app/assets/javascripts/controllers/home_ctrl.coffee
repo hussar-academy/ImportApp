@@ -55,3 +55,21 @@ angular.module 'ImportApp'
       searchRegExp = new RegExp($scope.searchText)
       searchRegExp.test(operation.invoice_num) || searchRegExp.test(operation.status) ||
       searchRegExp.test(operation.reporter) || searchRegExp.test(operation.categories)
+
+    $scope.dataToCsv = (data) ->
+      console.log data
+      for row in data
+        row.kind = row.categories.replace(', ', ';')
+      data
+
+    $scope.headers = [
+      'company',
+      'invoice_num',
+      'invoice_date',
+      'operation_date',
+      'amount',
+      'reporter',
+      'notes',
+      'status',
+      'kind'
+    ]

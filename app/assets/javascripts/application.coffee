@@ -10,6 +10,8 @@
 # = require ng-file-upload
 # = require ng-table
 # = require angular-ui-bootstrap-bower
+# = require ng-csv
+# = require angular-sanitize
 
 # = require_tree .
 # = require_tree ./templates

@@ -62,4 +62,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-angular-ui-bootstrap-bower'
   gem 'rails-assets-progressbar.js', '~> 0.9.0'
+  gem 'rails-assets-ng-csv'
+  gem 'rails-assets-angular-sanitize'
 end
